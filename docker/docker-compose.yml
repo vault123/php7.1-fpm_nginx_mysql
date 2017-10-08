@@ -4,8 +4,6 @@ services:
   api_php:
     build: php-fpm/.
     container_name: ${APP_NAME}_php
-    env_file:
-      - ./env/base.env
     volumes:
       - ${APP_PATH}:/app
     networks:
@@ -13,8 +11,6 @@ services:
   api_web:
     image: nginx:1.13
     container_name: ${APP_NAME}_web
-    env_file:
-      - ./env/base.env
     ports:
       - ${HOST_APP_PORT}:80
     volumes:
@@ -25,8 +21,6 @@ services:
   api_db:
     build: mysql/.
     container_name: ${APP_NAME}_mysql
-    env_file:
-      - ./env/base.env
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD="yes"
     volumes:
